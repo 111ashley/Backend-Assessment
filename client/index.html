@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Back End Assessment</title>
+
+  </head>
+  <body style="background-image: url(https://i.pinimg.com/736x/c6/f6/91/c6f691da74c3b637435b1e14099edc49.jpg); background-repeat: no-repeat; background-size: 120%;">
+  <div class="container" >
+    <button id="complimentButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU);">GET A COMPLIMENT</button>
+    <button id="fortuneButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)">GET A FORTUNE</button>
+    <button id="futureButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)"> YOUR FUTURE</button>
+    
+    <h2 style="border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"><border>QUOTE OF THE DAY</border></h2>
+     <div class="qa">
+    <p>
+       <span id="quote"></span><br />
+         -<span id="author" style="margin-left:10px;"></span>
+      </p>
+    </div>
+  </div>
+   
+    <script>
+      
+        const api_url = 'https://api.goprogram.ai/inspiration'
+        async function getQuote() {
+        const response = await fetch(api_url);
+        const data = await response.json();
+        const {quote, author} = data;
+        document.getElementById('quote').textContent = quote;
+        document.getElementById('author').textContent = author;
+        console.log(quote);
+        console.log(author);
+       
+      }
+      getQuote();
+     
+    </script>
+    <h2 style="border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"><border>EXPRESS YOURSELF</border></h2>
+  <div>
+    <form>
+    <input type="text" id="input"/>
+    <button id="get" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdjxsbRLbsE3TWlLWDzD8_Tw7NeQVvsGFAi07Q8tDxQlCReJT4WXaRvq28JbXizPogfck&usqp=CAU)">GET LOVE</button>
+    <button id="post" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_wAo1ip3kucx1Yf_-h46zIJGdVpgZ19E9TA&usqp=CAU)">POST HOW YOU FEEL</button>
+    </form>
+    <script>
+      const getBtn = document.getElementById('get')
+      const postBtn = document.getElementById('post')
+      const input = document.getElementById('input')
+
+      const baseUrl = 'http://localhost:4000/'
+      getBtn.addEventListener('click', getInfo)
+      postBtn.addEventListener('click', postInfo)
+      async function getInfo (e){
+        e.preventDefault()
+        const res = await fetch(baseUrl + 'info/' ,
+        {
+          method:'GET'
+        })
+        console.log(res)
+        const data = await res.json()
+        input.value = data.info
+      }
+      async function postInfo (e){
+        e.preventDefault()
+        if(input.value ==''){return}
+        const res = await fetch(baseUrl ,
+        {
+          method:'POST',
+          headers:{
+            "Content-Type":'application/json'
+
+          },
+          body: JSON.stringify({
+            parcel: input.value
+          })
+        })
+      
+      }
+
+
+    </script>
+  </div>
+  </div> 
+  <h2 style="color:white;text-shadow: 0 0 3px black;border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;""><border>DELETE THE LIMITING BELIEFS</border></h2>
+  
+  <button style="background-color: pink"; margin-bottom: 5px;">I'M NOT GOOD ENOUGH</button>
+  
+  
+  <button style="background-color:palevioletred; margin-bottom: 5px ">I'M CAPABLE OF ANYTHING</button>
+  
+  
+  <button style="background-color:bisque; margin-bottom: 5px">I'LL NEVER BE SUCCESSFUL</button>
+  
+  
+  <button style="background-color:orange; margin-bottom: 5px">I POSSESS UNIQUE ABILITIES</button>
+  
+  <h2 style="color:white; text-shadow: 0 0 3px black; color:white;text-shadow: 0 0 3px black;border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"">BOOK LIST</h2>
+  <form>
+    <input
+      type="text"
+      title="title"
+      placeholder="What's the book's title?"/>
+    <input
+      type="text"
+      id="img"
+      placeholder="Paste an image URL"/>
+    <section id="ratings-container">
+      <p>RATE THE BOOK:</p>
+      <div id="radio-container"
+      <label for="one">
+      <input
+        type="radio"
+        name="ratings"
+        value="1"
+        id="one"/>
+      1
+    </label>
+    <label for="two">
+      <input
+        type="radio"
+        name="ratings"
+        value="2"
+        id="two"/>
+      2
+    </label>
+    <label for="three">
+      <input 
+        type="radio"
+        name="ratings"
+        value="3"
+        id="three"/>
+      3
+    </label>
+    <label for="four">
+      <input
+        type="radio"
+        name="ratings"
+        value="4"
+        id="four"/>
+      4
+    </label>
+    <label for="five">
+      <input
+        type="radio"
+        name="ratings"
+        value="5"
+        id="five"/>
+      5
+    </label>
+  </div>
+    </section>
+    <button style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)">ADD BOOK</button>
+  </form>
+
+  <section id="books-container"></section>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
+
+  </body>
+</html>
