@@ -5,7 +5,12 @@ const app = express();
 const port = 4000
 
 // const books = require('./db.json')
-// const {getAllBooks,createBook,deleteBook,editBook} = require('./controller')
+const {
+    getBooks,
+    postBook,
+    deleteBook,
+    editBook
+} = require('./controller')
 
 app.use(cors());
 
@@ -39,13 +44,11 @@ app.post('/',(req,res) =>{
 })
 
 
-// app.get('/api/books',(req,res)=>{
-//     res.status(200).send(books)
-// })
-// app.get('/api/books',getAllBooks)
-// app.post('/api/books',createBook)
+
+app.get(`/api/books`, getBooks)
+app.post(`/api/books`, postBook)
 // app.delete('/api/books/:id',deleteBook)
-// app.put('/api/books/:id',editBook)
+
 
 
 

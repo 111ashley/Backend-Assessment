@@ -26,9 +26,46 @@ module.exports = {
         let randomIndex = Math.floor(Math.random () * future.length);
         let randomFuture = future[randomIndex];
         res.status(200).send(randomFuture);
-    }   
+    },
+
+    getBooks: (req, res) => res.status(200).send(books),
+
+    postBook: (req, res) => {
+        const { title, imageURL } = req.body;
+        const newBook = {
+          id: globalId,
+          title,
+          imageURL
+        }
+        books.push(newBook)
+        res.status(200).send(books)
+        globalId++
+        
+      }
  
-};
+}
+
+const books = [
+    {
+        id: 1,
+        title: "Rich Dad Poor Dad",
+        imageURL: "https://m.media-amazon.com/images/I/51AHZGhzZEL._SL500_.jpg",
+    },
+    {
+        id: 2,
+        title: "The Secret",
+        imageURL: "https://i.guim.co.uk/img/media/93b005182d65ea2e7ba15248c7e2f85bcb960e94/0_0_3600_5400/master/3600.jpg?width=700&quality=85&auto=format&fit=max&s=59c3efea82394deaed027d7cbd43409f",
+    },
+    {
+        id: 3,
+        title: "The 48 Laws of Power",
+        imageURL: "https://images-na.ssl-images-amazon.com/images/I/41KY-NORo9L._SX355_BO1,204,203,200_.jpg",
+    },
+]
+
+let globalId = 4
+
+
 
 // const books = require("/.db.json");
 //  let globalId = 4

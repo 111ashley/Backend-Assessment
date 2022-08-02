@@ -1,4 +1,12 @@
+const booksContainer = document.querySelector('#books-container')
+const form = document.querySelector('form')
+const postBookBtn = document.getElementById("add-book-btn")
 const complimentBtn = document.getElementById("complimentButton")
+
+const baseURL = `http://localhost:4000/api/books`
+
+const booksCallback = ({ data: books }) => displayBooks(books)
+const errCallback = err => console.log(err)
 
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
@@ -36,72 +44,43 @@ const getFuture = () => {
 futureBtn.addEventListener('click',getFuture)
 
 
+const getBooks = () => axios.get(baseURL).then(booksCallback).catch(errCallback)
+const postBook = body => axios.post(baseURL, body).then(booksCallback).catch(errCallback)
+
+function submitHandler(e) {
+    e.preventDefault()
+
+    let title = document.querySelector('#title')
+    let imageURL = document.querySelector('#img')
 
 
+    let body = {
+        tite: title.value,
+        imageURL: imageURL.value
+    }
 
+    postBook(body)
+        title.value = ''
+        imageURL.value = ''
 
-// const booksContainer = document.querySelector('#books-container')
-// const form = document.querySelector('form')
+}
 
-// const baseURL = `http://localhost:4000/api/books/`
+function createBookCard(book){
+    const bookCard = document.createElement('div')
+    bookCard.classList.add('book-card')
+    bookCard.innerHTML = `<img alt='book cover image' src=${book.imageURL} class="book-cover-image"/>
+    <p class="title">${book.title}</p> 
+    `
+    booksContainer.appendChild(bookCard)
+}
 
-// const booksCallback = ({ data: books }) => displayBooks(books)
-// const errCallback = err => console.log(err.response.data)
+function displayBooks(arr) {
+    booksContainer.innerHTML = ``
+    for (let i = 0; i < arr.length; i++){
+        createBookCard(arr[i])
+    }
+}
 
-// const getAllBooks = () => axios.get(baseURL).then(booksCallback).catch(errCallback)
-// const createBook = body => axios.post(baseURL, body).then(booksCallback).catch(errCallback)
-// const deleteBook = id => axios.delete(`${baseURL}/${id}`).then(booksCallback).catch(errCallback)
-// const updateBook = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(booksCallback).catch(errCallback)
-
-// function submitHandler(e) {
-//     e.preventDefault()
-
-//     let title = document.querySelector('#title')
-//     let rating = document.querySelector('input[name="ratings"]:checked')
-//     let imageURL = document.querySelector('#img')
-
-//     let bodyObj = {
-//         title: title.value,
-//         rating: rating.value, 
-//         imageURL: imageURL.value
-//     }
-
-//     createBook(bodyObj)
-
-//     title.value = ''
-//     rating.checked = false
-//     imageURL.value = ''
-// }
-
-// function createBookCard(book) {
-//     const movieCard = document.createElement('div')
-//     bookCard.classList.add('book-card')
-
-//     bookCard.innerHTML = `<img alt='book cover' src=${book.imageURL} class="book-cover"/>
-//     <p class="book-title">${book.title}</p>
-//     <div class="btns-container">
-//         <button onclick="updateBook(${book.id}, 'minus')">-</button>
-//         <p class="book-rating">${book.rating} stars</p>
-//         <button onclick="updateBook(${book.id}, 'plus')">+</button>
-//     </div>
-//     <button onclick="deleteBook(${book.id})">delete</button>
-//     `
-
-
-//     booksContainer.appendChild(bookCard)
-// }
-
-// function displayBooks(arr) {
-//     booksContainer.innerHTML = ``
-//     for (let i = 0; i < arr.length; i++) {
-//         createBookCard(arr[i])
-//     }
-// }
-
-// form.addEventListener('submit', submitHandler)
-
-// getAllBooks()
-
-
-
-
+form.addEventListener('submit', submitHandler)
+postBookBtn.addEventListener("click",postBook)
+getBooks()
