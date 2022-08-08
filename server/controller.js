@@ -19,10 +19,20 @@ const books = [
         title: "The Daily Laws",
         imageURL: "https://images-na.ssl-images-amazon.com/images/I/41nTxAwQQHL._SX329_BO1,204,203,200_.jpg"
     },
+    {
+        id: 5,
+        title: "The Mountain Is You",
+        imageURL: "https://images-na.ssl-images-amazon.com/images/I/41N62t+ANTL._SX331_BO1,204,203,200_.jpg"
+    }
+    // {
+    //     id: 6,
+    //     title: "Do It For Yourself",
+    //     imageURL: "https://images-na.ssl-images-amazon.com/images/I/41hoNOV87KL._SX373_BO1,204,203,200_.jpg"
+    // }
    
 ]
 
-let globalId = 5
+let globalId = 6
 
 
 module.exports = {
