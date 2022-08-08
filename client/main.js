@@ -3,6 +3,7 @@ const form = document.querySelector('form')
 const postBookBtn = document.getElementById("add-book-btn")
 const complimentBtn = document.getElementById("complimentButton")
 
+
 const baseURL = `http://localhost:4000/api/books`
 
 const booksCallback = ({ data: books }) => displayBooks(books)
@@ -46,7 +47,7 @@ futureBtn.addEventListener('click',getFuture)
 
 const getBooks = () => axios.get(baseURL).then(booksCallback).catch(errCallback)
 const postBook = body => axios.post(baseURL, body).then(booksCallback).catch(errCallback)
-
+const deleteBook = id => axios.delete(`${baseURL}/${id}`).then(booksCallback).catch(errCallback)
 function submitHandler(e) {
     e.preventDefault()
 
@@ -55,7 +56,7 @@ function submitHandler(e) {
 
 
     let body = {
-        tite: title.value,
+        title: title.value,
         imageURL: imageURL.value
     }
 
@@ -70,6 +71,7 @@ function createBookCard(book){
     bookCard.classList.add('book-card')
     bookCard.innerHTML = `<img alt='book cover image' src=${book.imageURL} class="book-cover-image"/>
     <p class="title">${book.title}</p> 
+    <button onclick="deleteBook(${book.id})" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)">DELETE</button>
     `
     booksContainer.appendChild(bookCard)
 }
@@ -82,5 +84,4 @@ function displayBooks(arr) {
 }
 
 form.addEventListener('submit', submitHandler)
-postBookBtn.addEventListener("click",postBook)
 getBooks()

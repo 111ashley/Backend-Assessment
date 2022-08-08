@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="style.css">
   <head>
-    <title>Back End Assessment</title>
-
+    <link rel="stylesheet" href="style.css">
+    <title>Back End Assessment</title>  
   </head>
   <body style="background-image: url(https://i.pinimg.com/736x/c6/f6/91/c6f691da74c3b637435b1e14099edc49.jpg); background-repeat: no-repeat; background-size: 160%;">
-  <div class="container" >
+  <div class="container">
     <button id="complimentButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU);">GET A COMPLIMENT</button>
-    <button id="fortuneButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)">GET A FORTUNE</button>
-    <button id="futureButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)"> YOUR FUTURE</button>
+    <button id="fortuneButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU);">GET A FORTUNE</button>
+    <button id="futureButton" style = "background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU);"> YOUR FUTURE</button>
     
     <h2 style="border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"><border>QUOTE OF THE DAY</border></h2>
      <div class="qa">
@@ -36,79 +35,21 @@
       getQuote();
      
     </script>
-    <h2 style="border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"><border>EXPRESS YOURSELF</border></h2>
-  <div>
-    <form>
-    <input type="text" id="input"/>
-    <button id="get" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdjxsbRLbsE3TWlLWDzD8_Tw7NeQVvsGFAi07Q8tDxQlCReJT4WXaRvq28JbXizPogfck&usqp=CAU)">GET LOVE</button>
-    <button id="post" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_wAo1ip3kucx1Yf_-h46zIJGdVpgZ19E9TA&usqp=CAU)">POST HOW YOU FEEL</button>
-    </form>
-    <script>
-      const getBtn = document.getElementById('get')
-      const postBtn = document.getElementById('post')
-      const input = document.getElementById('input')
+    <!-- <h2 style="border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black;"><border>DELETE THE LIMITING BELIEFS</border></h2> -->
+  
+    <!-- <label for="beliefs-category">
 
-      const baseUrl = 'http://localhost:4000/'
-      getBtn.addEventListener('click', getInfo)
-      postBtn.addEventListener('click', postInfo)
-      async function getInfo (e){
-        e.preventDefault()
-        const res = await fetch(baseUrl + 'info/' ,
-        {
-          method:'GET'
-        })
-        console.log(res)
-        const data = await res.json()
-        input.value = data.info
-      }
-      async function postInfo (e){
-        e.preventDefault()
-        if(input.value ==''){return}
-        const res = await fetch(baseUrl ,
-        {
-          method:'POST',
-          headers:{
-            "Content-Type":'application/json'
-
-          },
-          body: JSON.stringify({
-            parcel: input.value
-          })
-        })
-      
-      }
-
-
-    </script>
-  </div>
-  </div> 
-  <div>
-    <label for="beliefs-category">
-      Select a category for some killer advice!
     </label>
     <select name="" id="beliefs-category">
-      <option value="I'M NOT GOOD ENOUGH">I'M NOT GOOD ENOUGH</option>
-      <option value="finance">I'M CAPABLE OF ANYTHING</option>
-      <option value="sports">I'LL NEVER BE SUCCESSFUL</option>
-      <option value="creative">I POSSESS UNIQUE ABILITIES</option>
+      <option value="1">I'M NOT GOOD ENOUGH</option>
+      <option value="2">I'M CAPABLE OF ANYTHING</option>
+      <option value="3">I'LL NEVER BE SUCCESSFUL</option>
+      <option value="4">I POSSESS UNIQUE ABILITIES</option>
     </select>
-    <button id="category-submit" >DELETE BELIEF</button>
+    <button id="category-submit" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NO2tms5tq6m6YoqCOlIHjBhc90UMrbhsMdG0TMdnGsQUQe2G3X83GRBQKeiPNCWiM70&usqp=CAU)" >DELETE BELIEF</button> -->
   </div>
 
-  
-<div>
-  <ul>
-    <li><a style="color:white;text-shadow: 0 0 4px black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); width:250px; text-align: center; color:white; text-shadow: 0 0 3px black; font-size: 15px;"><b>DELETE THE LIMITING BELIEFS</b></a>
-    <ul>
-      <li style="float:left;width:250px;height:40px;text-align: center;font-size: 15px;margin-right: 2px;"><a style="text-decoration:none;color:black;display:block;">I'M NOT GOOD ENOUGH</a></li>
-      <li style="float:left;width:250px;height:40px;text-align: center;font-size: 15px;margin-right: 2px;"><a style="text-decoration:none;color:black;display:block;">I'M CAPABLE OF ANYTHING</a></li>
-      <li style="float:left;width:250px;height:40px;text-align: center;font-size: 15px;margin-right: 2px;"><a style="text-decoration:none;color:black;display:block;">I'LL NEVER BE SUCCESSFUL</a></li>
-      <li style="float:left;width:250px;height:40px;text-align: center;font-size: 15px;margin-right: 2px;"><a style="text-decoration:none;color:black;display:block;">I POSSESS UNIQUE ABILITIES</a></li>
-    </ul>
-  </ul> 
-</div>
- 
-  <h2 style="color:white; text-shadow: 0 0 3px black; color:white;text-shadow: 0 0 3px black;border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black; margin-top: 110px;"">BOOK RECS</h2>
+  <h2 style="color:white; text-shadow: 0 0 3px black; color:white;text-shadow: 0 0 3px black;border: 2px solid black; background-image: url(https://i.pinimg.com/originals/3c/3c/bb/3c3cbbb5a5e0ccac4561eefb98b842ef.jpg); border-left: 2px solid black; width:250px; text-align: center; color:white; text-shadow: 0 0 3px black; margin-top: 20px;"">BOOK RECS</h2>
   <form>
     <input
       type="text"

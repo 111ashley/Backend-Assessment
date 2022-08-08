@@ -9,7 +9,6 @@ const {
     getBooks,
     postBook,
     deleteBook,
-    editBook
 } = require('./controller')
 
 app.use(cors());
@@ -28,26 +27,26 @@ app.get("/api/future", getFuture);
 
 
 
-app.get('/info',(req,res) => {
+// app.get('/info',(req,res) => {
     
-    res.status(200).json({info:`You're a star ✨ `})
+//     res.status(200).json({info:`You're a star ✨ `})
 
-})
+// })
 
-app.post('/',(req,res) =>{
-    const {parcel} = req.body
-    console.log(parcel)
-    if (!parcel)
-{
-     return res.status(400).send({status: 'failed'})
-}    res.status(200).send({status:'recieved'})
-})
-
+// app.post('/',(req,res) =>{
+//     const {parcel} = req.body
+//     console.log(parcel)
+//     if (!parcel)
+// {
+//      return res.status(400).send({status: 'failed'})
+// }    res.status(200).send({status:'recieved'})
+// })
 
 
 app.get(`/api/books`, getBooks)
 app.post(`/api/books`, postBook)
-// app.delete('/api/books/:id',deleteBook)
+app.delete(`/api/books/:id`,deleteBook)
+
 
 
 
